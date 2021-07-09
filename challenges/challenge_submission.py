@@ -4,7 +4,7 @@ from datetime import datetime
 import utils
 
 
-class Submission(Model):
+class ChallengeSubmission(Model):
     """
     Submission class to store the submission details of users for specific challenges
     Database Attributes:
@@ -30,6 +30,7 @@ class Submission(Model):
         types.ForeignKey("users", "id", sql_type=types.Integer(big=True)),
     )
 
+    @property
     def created_at(self) -> datetime:
-        """Returns"""
+        """Returns the time the challenge submission was submitted"""
         return utils.snowflake_time(self.id)

@@ -28,6 +28,7 @@ class Challenge(Model):
     rules = Column(types.String)
     reward = Column(types.Integer)
 
+    @property
     def created_at(self) -> datetime:
-        """Returns"""
+        """Returns the time the challenge was created"""
         return utils.snowflake_time(self.id)
