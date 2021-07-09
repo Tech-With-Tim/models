@@ -3,7 +3,7 @@ from postDB import Model, Column, types
 
 class Token(Model):
     """
-    Token class to store OAuth2 Tokens.
+    Token class to provide an interface to OAuth2 Tokens.
     :param str token:                               The access_token sent from discord_data.
     :param dict data:                               All data returned by discord API.
     :param int user_id:                             The discord user this token relates to
