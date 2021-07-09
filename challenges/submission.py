@@ -6,9 +6,9 @@ import utils
 
 class Submission(Model):
     """
-    Challenge class to store the challenge details made by specific authors
+    Submission class to store the submission details of users for specific challenges
     Database Attributes:
-        Attributes stored in the `challenge` table.
+        Attributes stored in the `submission` table.
         :param int id:              The submission ID
         :param int challenge_id:    The submission challenge ID.
         :param str code:            The submission code.
