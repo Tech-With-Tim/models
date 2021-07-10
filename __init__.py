@@ -8,4 +8,11 @@ from .challenges.challenge_submission import ChallengeSubmission
 from .cdn import Asset, File
 
 
-models_ordered: List[Type[Model]] = [User, Token, Challenge, ChallengeSubmission, Asset, File]
+models_ordered: List[Type[Model]] = [
+    User,
+    Token,
+    Challenge,
+    ChallengeSubmission,
+    Asset,
+    File,
+]
