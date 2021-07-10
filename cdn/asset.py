@@ -28,7 +28,9 @@ class Asset(Model):
     name = Column(types.String(length=64))
     url_path = Column(types.String, primary_key=True)
     file_id = Column(types.ForeignKey("files", "id", sql_type=types.Integer(big=True)))
-    creator_id = Column(types.Integer(big=True))
+    creator_id = Column(
+        types.ForeignKey("users", "id", sql_type=types.Integer(big=True))
+    )
 
     file: Optional["File"] = None
 
@@ -50,9 +52,8 @@ class Asset(Model):
         if url_path is None:
             url_path = "".join(random.choice(string.ascii_letters) for _ in range(12))
 
-        return cls(
-            **(await cls.pool.fetchrow(query, name, file_id, creator_id, url_path))
-        )
+        record = await cls.pool.fetchrow(query, name, file_id, creator_id, url_path)
+        return cls(**record)
 
     @classmethod
     async def fetch(cls, **kwargs) -> Optional["Asset"]:
@@ -65,7 +66,7 @@ class Asset(Model):
         :param str url_path:    Asset url path
         :return:                Optional[Asset]
         """
-        args, i = [], 1
+        args = []
         query = "SELECT * FROM {}".format(cls.__tablename__)
 
         for key in ("id", "name", "url_path"):
@@ -76,7 +77,7 @@ class Asset(Model):
             if key == "id" and isinstance(value, str):
                 value = int(value)
 
-            query += f" {'WHERE' if i==1 else 'AND'} {key} = ${i}"
+            query += f" {'WHERE' if not args else 'AND'} {key} = ${len(args)+1}"
             args.append(value)
 
         record = await cls.pool.fetchrow(query, *args)
@@ -95,7 +96,7 @@ class Asset(Model):
         :param str name:        Asset name
         :param str url_path:    Asset url path
         """
-        args, i = [], 1
+        args = []
         query = "DELETE FROM {}".format(cls.__tablename__)
 
         for key in ("id", "name", "url_path"):
@@ -106,7 +107,7 @@ class Asset(Model):
             if key == "id" and isinstance(value, str):
                 value = int(value)
 
-            query += f" {'WHERE' if i==1 else 'AND'} {key} = ${i}"
+            query += f" {'WHERE' if not args else 'AND'} {key} = ${len(args)+1}"
             args.append(value)
 
         return await cls.pool.execute(query, *args)
