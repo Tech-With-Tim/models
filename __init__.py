@@ -7,10 +7,10 @@ from .challenges import Challenge, ChallengeSubmission
 
 
 models_ordered: List[Type[Model]] = [
-    Asset,
-    File,
     User,
     Token,
+    File,
+    Asset,
     Challenge,
     ChallengeSubmission,
 ]
