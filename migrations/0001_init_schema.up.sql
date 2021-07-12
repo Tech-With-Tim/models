@@ -79,7 +79,7 @@ $BODY$;
 CREATE OR REPLACE FUNCTION snowflake_to_timestamp(flake BIGINT)
     RETURNS TIMESTAMP
     LANGUAGE 'plpgsql'
-AS 
+AS
 $BODY$
 DECLARE
     our_epoch  bigint := 1577836800;
