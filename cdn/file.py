@@ -20,8 +20,8 @@ class File(Model):
     """
 
     id = Column(types.Integer(big=True), unique=True)
-    mimetype = Column(types.String)
     name = Column(types.String)
+    mimetype = Column(types.String)
     data = Column(types.Binary)
 
     @classmethod
