@@ -36,6 +36,7 @@ class Asset(Model):
         """
         Fetch Asset based on any of the provided arguments.
         If `None` is given it will not be acquainted for in the query.
+
         :param int id:          Asset ID
         :param str name:        Asset name
         :param str url_path:    Asset url path
