@@ -20,7 +20,7 @@ class ChallengeSubmission(Model):
     # Store the ID as a BIGINT even though it's transferred as a string.
     # This is due to a substantial difference in index time and storage space
     challenge_id = Column(
-        types.ForeignKey("challenge", "id", sql_type=types.Integer(big=True)),
+        types.ForeignKey("challenges", "id", sql_type=types.Integer(big=True)),
     )
 
     code = Column(types.String)
