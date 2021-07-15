@@ -1,19 +1,3 @@
-CREATE TABLE IF NOT EXISTS assets (
-    id BIGINT UNIQUE NOT NULL,
-    name VARCHAR(64) NOT NULL,
-    url_path TEXT NOT NULL,
-    file_id BIGINT REFERENCES files(id) ON DELETE CASCADE ON UPDATE NO ACTION NOT NULL,
-    creator_id BIGINT REFERENCES users(id) ON DELETE CASCADE ON UPDATE NO ACTION NOT NULL,
-    PRIMARY KEY (url_path)
-);
-
-CREATE TABLE IF NOT EXISTS files (
-    id BIGINT UNIQUE NOT NULL,
-    mimetype TEXT NOT NULL,
-    name TEXT NOT NULL,
-    data BYTEA NOT NULL
-);
-
 CREATE TABLE IF NOT EXISTS users (
     id BIGINT UNIQUE NOT NULL,
     username VARCHAR(32) NOT NULL,
@@ -31,6 +15,22 @@ CREATE TABLE IF NOT EXISTS tokens (
     PRIMARY KEY (user_id)
 );
 
+CREATE TABLE IF NOT EXISTS files (
+    id BIGINT UNIQUE NOT NULL,
+    name TEXT NOT NULL,
+    mimetype TEXT NOT NULL,
+    data BYTEA NOT NULL
+);
+
+CREATE TABLE IF NOT EXISTS assets (
+    id BIGINT UNIQUE NOT NULL,
+    name VARCHAR(64) NOT NULL,
+    url_path TEXT NOT NULL,
+    file_id BIGINT REFERENCES files(id) ON DELETE CASCADE ON UPDATE NO ACTION NOT NULL,
+    creator_id BIGINT REFERENCES users(id) ON DELETE CASCADE ON UPDATE NO ACTION NOT NULL,
+    PRIMARY KEY (url_path)
+);
+
 CREATE TABLE IF NOT EXISTS challenges (
     id BIGINT NOT NULL,
     title TEXT NOT NULL,
@@ -43,7 +43,7 @@ CREATE TABLE IF NOT EXISTS challenges (
 
 CREATE TABLE IF NOT EXISTS challengesubmissions (
     id BIGINT NOT NULL,
-    challenge_id BIGINT REFERENCES challenge(id) ON DELETE CASCADE ON UPDATE NO ACTION NOT NULL,
+    challenge_id BIGINT REFERENCES challenges(id) ON DELETE CASCADE ON UPDATE NO ACTION NOT NULL,
     code TEXT NOT NULL,
     language TEXT NOT NULL,
     author_id BIGINT REFERENCES users(id) ON DELETE CASCADE ON UPDATE NO ACTION NOT NULL,
@@ -58,7 +58,7 @@ CREATE OR REPLACE FUNCTION create_snowflake()
 AS
 $BODY$
 DECLARE
-    our_epoch  bigint := 1577836800;
+    our_epoch  bigint := 1609459200;
     seq_id     bigint;
     now_millis bigint;
     -- the id of this DB shard, must be set for each
@@ -82,7 +82,7 @@ CREATE OR REPLACE FUNCTION snowflake_to_timestamp(flake BIGINT)
 AS
 $BODY$
 DECLARE
-    our_epoch  bigint := 1577836800;
+    our_epoch  bigint := 1609459200;
 BEGIN
     RETURN to_timestamp(((flake >> 22) + our_epoch) / 1000);
 END;
