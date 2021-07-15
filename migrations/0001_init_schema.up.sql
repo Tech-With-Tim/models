@@ -58,7 +58,7 @@ CREATE OR REPLACE FUNCTION create_snowflake()
 AS
 $BODY$
 DECLARE
-    our_epoch  bigint := 1577836800;
+    our_epoch  bigint := 1609459200;
     seq_id     bigint;
     now_millis bigint;
     -- the id of this DB shard, must be set for each
@@ -82,7 +82,7 @@ CREATE OR REPLACE FUNCTION snowflake_to_timestamp(flake BIGINT)
 AS
 $BODY$
 DECLARE
-    our_epoch  bigint := 1577836800;
+    our_epoch  bigint := 1609459200;
 BEGIN
     RETURN to_timestamp(((flake >> 22) + our_epoch) / 1000);
 END;
