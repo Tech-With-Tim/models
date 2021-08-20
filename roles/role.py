@@ -10,6 +10,7 @@ from ..permissions.general import Administrator
 class Role(Model):
     """
     Role class
+
     Database Attributes:
         Attributes stored in the `roles` table.
         :param int id:                          Role ID.
