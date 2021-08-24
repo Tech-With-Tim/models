@@ -1,5 +1,6 @@
 from typing import List
 from pydantic import BaseModel
+from functools import cached_property
 
 from .permission import BasePermission
 
@@ -16,7 +17,7 @@ class BaseCategory(BaseModel):
     name: str
     permissions: List[BasePermission]
 
-    @property
+    @cached_property
     def all_permissions(self) -> int:
         perms = 0
 

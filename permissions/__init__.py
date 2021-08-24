@@ -1,5 +1,24 @@
-from .general import GeneralPermissions
-from .challenges import WeeklyChallengesPermissions
+from .general import GeneralPermissions, Administrator, ManageRoles
+from .challenges import (
+    WeeklyChallengesPermissions,
+    CreateWeeklyChallenge,
+    DeleteWeeklyChallenge,
+    EditWeeklyChallenge,
+    ManageParticipants,
+    ManageSubmissions,
+    ViewUpcomingWeeklyChallenge,
+)
 
 
-__all__ = (GeneralPermissions, WeeklyChallengesPermissions)
+__all__ = (
+    Administrator,
+    ManageRoles,
+    GeneralPermissions,
+    WeeklyChallengesPermissions,
+    CreateWeeklyChallenge,
+    DeleteWeeklyChallenge,
+    EditWeeklyChallenge,
+    ManageParticipants,
+    ManageSubmissions,
+    ViewUpcomingWeeklyChallenge,
+)

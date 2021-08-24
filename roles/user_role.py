@@ -6,7 +6,7 @@ class UserRole(Model):
     User Role Class
 
     Database Attributes:
-        Attributes stored in the `users` table.
+        Attributes stored in the `userroles` table.
         :param int user_id:         The users Discord ID
         :param int role_id:         The role ID (Snowflake)
     """
@@ -23,10 +23,11 @@ class UserRole(Model):
     @classmethod
     async def create(cls, member_id: int, role_id: int):
         query = """
-            INSERT INTO userroles (user_id, role_id) VALUES ($1, $2);
+            INSERT INTO userroles (user_id, role_id) VALUES ($1, $2) RETURNING *;
         """
 
-        return cls(**await cls.pool.execute(query, member_id, role_id))
+        record = await cls.pool.fetchrow(query, member_id, role_id)
+        return cls(**record)
 
     @classmethod
     async def delete(cls, member_id: int, role_id: int):
@@ -34,4 +35,4 @@ class UserRole(Model):
             DELETE FROM userroles WHERE user_id = $1 AND role_id $2;
         """
 
-        return cls(**await cls.pool.execute(query, member_id, role_id))
+        await cls.pool.execute(query, member_id, role_id)
