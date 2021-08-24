@@ -1,3 +1,4 @@
+from typing import List
 from .bases import BasePermission, BaseCategory
 
 
@@ -60,7 +61,7 @@ class WeeklyChallengesPermissions(BaseCategory):
 
     name: str = "Weekly Challenges"
 
-    permissions = [
+    permissions: List[BasePermission] = [
         CreateWeeklyChallenge(),
         EditWeeklyChallenge(),
         ViewUpcomingWeeklyChallenge(),

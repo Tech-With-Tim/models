@@ -17,6 +17,9 @@ class BaseCategory(BaseModel):
     name: str
     permissions: List[BasePermission]
 
+    class Config:
+        keep_untouched = (cached_property,)
+
     @cached_property
     def all_permissions(self) -> int:
         perms = 0
