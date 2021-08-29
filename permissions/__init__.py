@@ -1,3 +1,4 @@
+from .bases import BasePermission, BaseCategory
 from .general import GeneralPermissions, Administrator, ManageRoles
 from .challenges import (
     WeeklyChallengesPermissions,
@@ -11,6 +12,8 @@ from .challenges import (
 
 
 __all__ = (
+    BasePermission,
+    BaseCategory,
     Administrator,
     ManageRoles,
     GeneralPermissions,
