@@ -44,7 +44,7 @@ class Role(Model):
         return role
 
     def has_permissions(self, permissions: List[Union[int, BasePermission]]) -> bool:
-        """Returns `True` if this Role has all `Permissions`"""
+        """Returns `True` if this role has all provided permissions"""
         if self.permissions & Administrator().value:
             return True
 
@@ -58,7 +58,7 @@ class Role(Model):
         return self.permissions & all_perms == all_perms
 
     def has_permission(self, permission: Union[BasePermission, int]) -> bool:
-        """Returns `True` if this Role has said `Permission`"""
+        """Returns `True` if this role has the provided permission"""
         if self.permissions & Administrator().value:
             return True
 
