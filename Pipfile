@@ -9,10 +9,12 @@ pre-commit = "*"
 black = "*"
 
 [packages]
+pydantic = "*"
 postdb = "*"
 
 [pipenv]
 allow_prereleases = true
 
-[requires]
-python_version = "3.8"
+[scripts]
+test = "python -m pytest"
+lint = "pre-commit run --all-files"
