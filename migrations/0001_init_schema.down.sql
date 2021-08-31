@@ -10,6 +10,8 @@ DROP TABLE IF EXISTS files RESTRICT;
 
 DROP TABLE IF EXISTS users RESTRICT;
 
+DROP SEQUENCE IF EXISTS global_snowflake_id_seq;
+
 DROP FUNCTION IF EXISTS create_snowflake();
 
 DROP FUNCTION IF EXISTS snowflake_to_timestamp(flake BIGINT);
