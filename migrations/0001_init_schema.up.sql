@@ -31,6 +31,21 @@ CREATE TABLE IF NOT EXISTS assets (
     PRIMARY KEY (url_path)
 );
 
+CREATE TABLE IF NOT EXISTS roles (
+    id BIGINT NOT NULL,
+    name VARCHAR(32) NOT NULL,
+    position NUMERIC NOT NULL,
+    color INTEGER,
+    permissions INTEGER DEFAULT (0) NOT NULL,
+    PRIMARY KEY (id)
+);
+
+CREATE TABLE IF NOT EXISTS userroles (
+    user_id BIGINT REFERENCES users(id) ON DELETE CASCADE ON UPDATE NO ACTION NOT NULL,
+    role_id BIGINT REFERENCES roles(id) ON DELETE CASCADE ON UPDATE NO ACTION NOT NULL,
+    PRIMARY KEY (user_id, role_id)
+);
+
 CREATE TABLE IF NOT EXISTS challenges (
     id BIGINT NOT NULL,
     title TEXT NOT NULL,
