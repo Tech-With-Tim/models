@@ -32,7 +32,7 @@ class UserRole(Model):
     @classmethod
     async def delete(cls, member_id: int, role_id: int):
         query = """
-            DELETE FROM userroles WHERE user_id = $1 AND role_id $2;
+            DELETE FROM userroles WHERE user_id = $1 AND role_id = $2;
         """
 
         await cls.pool.execute(query, member_id, role_id)
