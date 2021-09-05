@@ -34,7 +34,7 @@ CREATE TABLE IF NOT EXISTS assets (
 CREATE TABLE IF NOT EXISTS roles (
     id BIGINT NOT NULL,
     name VARCHAR(32) NOT NULL,
-    position NUMERIC NOT NULL,
+    position REAL NOT NULL,
     color INTEGER,
     permissions INTEGER DEFAULT (0) NOT NULL,
     PRIMARY KEY (id)

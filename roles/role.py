@@ -21,8 +21,8 @@ class Role(Model):
     """
 
     id = Column(types.Integer(big=True), primary_key=True)
-    name = Column(types.String(length=32))
-    position = Column(types.Numeric)
+    name = Column(types.String(length=32), unique=True)
+    position = Column(types.Real)
     color = Column(types.Integer, nullable=True)
     permissions = Column(types.Integer, default=0)
 
