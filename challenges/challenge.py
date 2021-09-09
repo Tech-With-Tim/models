@@ -13,20 +13,15 @@ class Challenge(Model):
         :param str title:           The challenge title.
         :param int author_id:       The challenge author's Discord ID.
         :param str description:     The challenge description.
-        :param str rules:           The rules of the challenge.
-        :param int reward:          The reward for completing the challenge.
     """
 
     id = Column(types.Integer(big=True), primary_key=True)
-    # Store the ID as a BIGINT even though it's transferred as a string.
-    # This is due to a substantial difference in index time and storage space
     title = Column(types.String)
     author_id = Column(
         types.ForeignKey("users", "id", sql_type=types.Integer(big=True)),
     )
     description = Column(types.String)
-    rules = Column(types.String)
-    reward = Column(types.Integer)
+    released_at = Column(types.DateTime, nullable=True)
 
     @property
     def created_at(self) -> datetime:
