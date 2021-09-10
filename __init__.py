@@ -8,6 +8,7 @@ from .challenges import (
     Challenge,
     ChallengeLanguage,
     ChallengeSubmission,
+    ChallengeParticipant,
 )
 
 
@@ -18,7 +19,8 @@ models_ordered: List[Type[Model]] = [
     Asset,
     Role,
     UserRole,
-    Challenge,
     ChallengeLanguage,
+    Challenge,
     ChallengeSubmission,
+    ChallengeParticipant
 ]

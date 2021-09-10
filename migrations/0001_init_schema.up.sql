@@ -33,7 +33,7 @@ CREATE TABLE IF NOT EXISTS assets (
 
 CREATE TABLE IF NOT EXISTS roles (
     id BIGINT NOT NULL,
-    name VARCHAR(32) NOT NULL,
+    name VARCHAR(32) UNIQUE NOT NULL,
     position REAL NOT NULL,
     color INTEGER,
     permissions INTEGER DEFAULT (0) NOT NULL,
@@ -46,24 +46,42 @@ CREATE TABLE IF NOT EXISTS userroles (
     PRIMARY KEY (user_id, role_id)
 );
 
+CREATE TABLE IF NOT EXISTS challengelanguages (
+    id BIGINT NOT NULL,
+    name TEXT UNIQUE NOT NULL,
+    download_url TEXT NOT NULL,
+    disabled BOOLEAN DEFAULT FALSE NOT NULL,
+    piston_lang TEXT NOT NULL,
+    piston_lang_ver TEXT NOT NULL,
+    PRIMARY KEY (id)
+);
+
 CREATE TABLE IF NOT EXISTS challenges (
     id BIGINT NOT NULL,
     title TEXT NOT NULL,
     author_id BIGINT REFERENCES users(id) ON DELETE CASCADE ON UPDATE NO ACTION NOT NULL,
     description TEXT NOT NULL,
-    rules TEXT NOT NULL,
-    reward INTEGER NOT NULL,
+    language_ids BIGINT ARRAY NOT NULL,
+    released_at TIMESTAMP WITHOUT TIME ZONE,
     PRIMARY KEY (id)
 );
 
 CREATE TABLE IF NOT EXISTS challengesubmissions (
     id BIGINT NOT NULL,
     challenge_id BIGINT REFERENCES challenges(id) ON DELETE CASCADE ON UPDATE NO ACTION NOT NULL,
-    code TEXT NOT NULL,
-    language TEXT NOT NULL,
     author_id BIGINT REFERENCES users(id) ON DELETE CASCADE ON UPDATE NO ACTION NOT NULL,
+    language_id BIGINT REFERENCES challengeLanguages(id) ON DELETE CASCADE ON UPDATE NO ACTION NOT NULL,
+    code TEXT NOT NULL,
     PRIMARY KEY (id)
 );
+
+CREATE TABLE IF NOT EXISTS challengeparticipants (
+    id BIGINT NOT NULL,
+    challenge_id BIGINT REFERENCES challenges(id) ON DELETE CASCADE ON UPDATE NO ACTION NOT NULL,
+    user_id BIGINT REFERENCES users(id) ON DELETE CASCADE ON UPDATE NO ACTION NOT NULL,
+    PRIMARY KEY (id)
+);
+
 
 CREATE SEQUENCE IF NOT EXISTS global_snowflake_id_seq;
 

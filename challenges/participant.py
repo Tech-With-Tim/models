@@ -20,9 +20,7 @@ class ChallengeParticipant(Model):
     challenge_id = Column(
         types.ForeignKey("challenges", "id", sql_type=types.Integer(big=True))
     )
-    user_id = Column(
-        types.ForeignKey("users", "id", sql_type=types.Integer(big=True))
-    )
+    user_id = Column(types.ForeignKey("users", "id", sql_type=types.Integer(big=True)))
 
     @property
     def created_at(self) -> datetime:
