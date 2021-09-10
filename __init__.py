@@ -22,5 +22,5 @@ models_ordered: List[Type[Model]] = [
     ChallengeLanguage,
     Challenge,
     ChallengeSubmission,
-    ChallengeParticipant
+    ChallengeParticipant,
 ]
