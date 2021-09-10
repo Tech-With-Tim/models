@@ -10,6 +10,7 @@ class ChallengeSubmission(Model):
 
     Database Attributes:
         Attributes stored in the `challengeSubmissions` table.
+
         :param int id:                   ID of submission
         :param int challenge_id:         The challenge id
         :param int author_id:            ID of submission author

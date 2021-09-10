@@ -15,8 +15,6 @@ class Challenge(Model):
         :param str title:                       The challenge title.
         :param int author_id:                   The challenge author's Discord ID.
         :param str description:                 The challenge description.
-        :param int rules_id:                    The rules applied to this challenge.
-        :param int rewards_id:                  The rewards given to users who complete this challenge within time.
         :param List[int] language_ids:          The languages you can use to complete this challenge.
         :param :class:`datetime` released_at:   The time this challenge was released at.
     """
@@ -27,12 +25,7 @@ class Challenge(Model):
         types.ForeignKey("users", "id", sql_type=types.Integer(big=True)),
     )
     description = Column(types.String)
-    rules_id = Column(types.ForeignKey(
-        "rules", "id", sql_type=types.Integer(big=True))
-    )
-    rewards_id = Column(types.ForeignKey(
-        "challengerewards", "id", sql_type=types.Integer(big=True))
-    )
+
     # Implicit ForeignKey to ChallengeLanguage.id
     language_ids = Column(types.Array(types.Integer(big=True)))
     released_at = Column(types.DateTime, nullable=True)
