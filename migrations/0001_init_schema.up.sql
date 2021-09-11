@@ -49,7 +49,7 @@ CREATE TABLE IF NOT EXISTS userroles (
 CREATE TABLE IF NOT EXISTS challengelanguages (
     id BIGINT NOT NULL,
     name TEXT UNIQUE NOT NULL,
-    download_url TEXT NOT NULL,
+    download_url TEXT,
     disabled BOOLEAN DEFAULT FALSE NOT NULL,
     piston_lang TEXT NOT NULL,
     piston_lang_ver TEXT NOT NULL,
@@ -70,7 +70,7 @@ CREATE TABLE IF NOT EXISTS challengesubmissions (
     id BIGINT NOT NULL,
     challenge_id BIGINT REFERENCES challenges(id) ON DELETE CASCADE ON UPDATE NO ACTION NOT NULL,
     author_id BIGINT REFERENCES users(id) ON DELETE CASCADE ON UPDATE NO ACTION NOT NULL,
-    language_id BIGINT REFERENCES challengeLanguages(id) ON DELETE CASCADE ON UPDATE NO ACTION NOT NULL,
+    language_id BIGINT REFERENCES challengelanguages(id) ON DELETE CASCADE ON UPDATE NO ACTION NOT NULL,
     code TEXT NOT NULL,
     PRIMARY KEY (id)
 );

@@ -9,7 +9,7 @@ class ChallengeSubmission(Model):
     Challenge Submission class
 
     Database Attributes:
-        Attributes stored in the `challengeSubmissions` table.
+        Attributes stored in the `challengesubmissions` table.
 
         :param int id:                   ID of submission
         :param int challenge_id:         The challenge id
@@ -26,7 +26,7 @@ class ChallengeSubmission(Model):
         types.ForeignKey("users", "id", sql_type=types.Integer(big=True))
     )
     language_id = Column(
-        types.ForeignKey("challengeLanguages", "id", sql_type=types.Integer(big=True))
+        types.ForeignKey("challengelanguages", "id", sql_type=types.Integer(big=True))
     )
     code = Column(types.String)
 

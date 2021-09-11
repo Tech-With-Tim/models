@@ -25,6 +25,7 @@ class Challenge(Model):
         types.ForeignKey("users", "id", sql_type=types.Integer(big=True)),
     )
     description = Column(types.String)
+    example = Column(types.String)
 
     # Implicit ForeignKey to ChallengeLanguage.id
     language_ids = Column(types.Array(types.Integer(big=True)))

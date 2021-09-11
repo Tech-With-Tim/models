@@ -9,7 +9,7 @@ class ChallengeLanguage(Model):
     Challenge Languages class
 
     Database Attributes:
-        Attributes stored in the `challengeLanguages` table.
+        Attributes stored in the `challengelanguages` table.
 
         :param int id:                  Snowflake ID
         :param str name:                Unique language name
@@ -21,7 +21,7 @@ class ChallengeLanguage(Model):
 
     id = Column(types.Integer(big=True), primary_key=True)
     name = Column(types.String, unique=True)
-    download_url = Column(types.String)
+    download_url = Column(types.String, nullable=True)
     disabled = Column(types.Boolean, default=False)
     piston_lang = Column(types.String)
     piston_lang_ver = Column(types.String)
