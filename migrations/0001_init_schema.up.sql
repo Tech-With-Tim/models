@@ -62,6 +62,8 @@ CREATE TABLE IF NOT EXISTS challenges (
     author_id BIGINT REFERENCES users(id) ON DELETE CASCADE ON UPDATE NO ACTION NOT NULL,
     description TEXT NOT NULL,
     language_ids BIGINT ARRAY NOT NULL,
+    example_in TEXT ARRAY NOT NULL,
+    example_out TEXT ARRAY NOT NULL,
     released_at TIMESTAMP WITHOUT TIME ZONE,
     PRIMARY KEY (id)
 );
