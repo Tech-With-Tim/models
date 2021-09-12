@@ -19,6 +19,7 @@ class Challenge(Model):
         :param List[str] example_out:           Example output.
         :param List[int] language_ids:          The languages you can use to complete this challenge.
         :param :class:`datetime` released_at:   The time this challenge was released at.
+        :param str slug:                        The URL slug this challenge relates to.
     """
 
     id = Column(types.Integer(big=True), primary_key=True)
@@ -33,6 +34,7 @@ class Challenge(Model):
     # Implicit ForeignKey to ChallengeLanguage.id
     language_ids = Column(types.Array(types.Integer(big=True)))
     released_at = Column(types.DateTime, nullable=True)
+    slug = Column(types.String, unique=True)
 
     @property
     def created_at(self) -> datetime:

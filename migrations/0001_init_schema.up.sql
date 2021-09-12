@@ -65,6 +65,7 @@ CREATE TABLE IF NOT EXISTS challenges (
     example_in TEXT ARRAY NOT NULL,
     example_out TEXT ARRAY NOT NULL,
     released_at TIMESTAMP WITHOUT TIME ZONE,
+    slug TEXT UNIQUE NOT NULL,
     PRIMARY KEY (id)
 );
 
