@@ -1,5 +1,3 @@
-DROP TABLE IF EXISTS challengeparticipants RESTRICT;
-
 DROP TABLE IF EXISTS challengesubmissions RESTRICT;
 
 DROP TABLE IF EXISTS challenges RESTRICT;

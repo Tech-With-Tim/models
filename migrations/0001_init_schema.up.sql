@@ -77,13 +77,6 @@ CREATE TABLE IF NOT EXISTS challengesubmissions (
     PRIMARY KEY (challenge_id, author_id)
 );
 
-CREATE TABLE IF NOT EXISTS challengeparticipants (
-    id BIGINT UNIQUE NOT NULL,
-    challenge_id BIGINT REFERENCES challenges(id) ON DELETE CASCADE ON UPDATE NO ACTION NOT NULL,
-    user_id BIGINT REFERENCES users(id) ON DELETE CASCADE ON UPDATE NO ACTION NOT NULL,
-    PRIMARY KEY (challenge_id, user_id)
-);
-
 
 CREATE SEQUENCE IF NOT EXISTS global_snowflake_id_seq;
 
