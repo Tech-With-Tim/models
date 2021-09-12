@@ -21,11 +21,11 @@ class ChallengeSubmission(Model):
     id = Column(types.Integer(big=True), unique=True)
     challenge_id = Column(
         types.ForeignKey("challenges", "id", sql_type=types.Integer(big=True)),
-        primary_key=True
+        primary_key=True,
     )
     author_id = Column(
         types.ForeignKey("users", "id", sql_type=types.Integer(big=True)),
-        primary_key=True
+        primary_key=True,
     )
     language_id = Column(
         types.ForeignKey("challengelanguages", "id", sql_type=types.Integer(big=True))
