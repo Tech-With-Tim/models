@@ -58,7 +58,7 @@ CREATE TABLE IF NOT EXISTS challengelanguages (
 
 CREATE TABLE IF NOT EXISTS challenges (
     id BIGINT NOT NULL,
-    title TEXT NOT NULL,
+    title TEXT UNIQUE NOT NULL,
     author_id BIGINT REFERENCES users(id) ON DELETE CASCADE ON UPDATE NO ACTION NOT NULL,
     description TEXT NOT NULL,
     language_ids BIGINT ARRAY NOT NULL,

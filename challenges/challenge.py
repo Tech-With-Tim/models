@@ -22,7 +22,7 @@ class Challenge(Model):
     """
 
     id = Column(types.Integer(big=True), primary_key=True)
-    title = Column(types.String)
+    title = Column(types.String, unique=True)
     author_id = Column(
         types.ForeignKey("users", "id", sql_type=types.Integer(big=True)),
     )
