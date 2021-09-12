@@ -34,6 +34,7 @@ class Challenge(Model):
     # Implicit ForeignKey to ChallengeLanguage.id
     language_ids = Column(types.Array(types.Integer(big=True)))
     released_at = Column(types.DateTime, nullable=True)
+    deleted = Column(types.Boolean, default=False)
     slug = Column(types.String, unique=True)
 
     @property
