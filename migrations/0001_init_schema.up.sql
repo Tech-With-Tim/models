@@ -69,19 +69,19 @@ CREATE TABLE IF NOT EXISTS challenges (
 );
 
 CREATE TABLE IF NOT EXISTS challengesubmissions (
-    id BIGINT NOT NULL,
+    id BIGINT UNIQUE NOT NULL,
     challenge_id BIGINT REFERENCES challenges(id) ON DELETE CASCADE ON UPDATE NO ACTION NOT NULL,
     author_id BIGINT REFERENCES users(id) ON DELETE CASCADE ON UPDATE NO ACTION NOT NULL,
     language_id BIGINT REFERENCES challengelanguages(id) ON DELETE CASCADE ON UPDATE NO ACTION NOT NULL,
     code TEXT NOT NULL,
-    PRIMARY KEY (id)
+    PRIMARY KEY (challenge_id, author_id)
 );
 
 CREATE TABLE IF NOT EXISTS challengeparticipants (
-    id BIGINT NOT NULL,
+    id BIGINT UNIQUE NOT NULL,
     challenge_id BIGINT REFERENCES challenges(id) ON DELETE CASCADE ON UPDATE NO ACTION NOT NULL,
     user_id BIGINT REFERENCES users(id) ON DELETE CASCADE ON UPDATE NO ACTION NOT NULL,
-    PRIMARY KEY (id)
+    PRIMARY KEY (challenge_id, user_id)
 );
 
 

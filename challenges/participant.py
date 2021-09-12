@@ -16,11 +16,13 @@ class ChallengeParticipant(Model):
         :param int user_id:         The user ID.
     """
 
-    id = Column(types.Integer(big=True), primary_key=True)
+    id = Column(types.Integer(big=True), unique=True)
     challenge_id = Column(
-        types.ForeignKey("challenges", "id", sql_type=types.Integer(big=True))
+        types.ForeignKey("challenges", "id", sql_type=types.Integer(big=True)),
+        primary_key=True
     )
-    user_id = Column(types.ForeignKey("users", "id", sql_type=types.Integer(big=True)))
+    user_id = Column(types.ForeignKey("users", "id", sql_type=types.Integer(big=True)),
+                     primary_key=True)
 
     @property
     def created_at(self) -> datetime:
