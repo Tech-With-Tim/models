@@ -1,7 +1,9 @@
 from .challenge import Challenge
-from .challenge_submission import ChallengeSubmission
+from .language import ChallengeLanguage
+from .submission import ChallengeSubmission
 
 __all__ = (
     Challenge,
+    ChallengeLanguage,
     ChallengeSubmission,
 )
