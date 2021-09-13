@@ -19,6 +19,7 @@ class Challenge(Model):
         :param List[str] example_out:           Example output.
         :param List[int] language_ids:          The languages you can use to complete this challenge.
         :param :class:`datetime` released_at:   The time this challenge was released at.
+        :param bool deleted:                    Whether or not this challenge has been deleted.
         :param str slug:                        The URL slug this challenge relates to.
     """
 
