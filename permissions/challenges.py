@@ -48,12 +48,21 @@ class ManageParticipants(BasePermission):
 
 
 class ManageSubmissions(BasePermission):
-    """A permission which allows users to delete weekly challenges"""
+    """A permission which allows users to manage weekly challenges submissions"""
 
     id: int = 8
     name: str = "Manage Submissions"
     value: int = 1 << 7
     description: str = "Allows users to manage weekly challenges submissions"
+
+
+class ManageWeeklyChallengeLanguages(BasePermission):
+    """A permission which allows users to manage weekly challenge languages"""
+
+    id: int = 9
+    name: str = "Manage Weekly Challenge Languages"
+    value: int = 1 << 8
+    description: str = "Allows users to manage weekly challenge languages"
 
 
 class WeeklyChallengesPermissions(BaseCategory):
@@ -68,4 +77,5 @@ class WeeklyChallengesPermissions(BaseCategory):
         DeleteWeeklyChallenge(),
         ManageParticipants(),
         ManageSubmissions(),
+        ManageWeeklyChallengeLanguages(),
     ]

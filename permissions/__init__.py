@@ -7,6 +7,7 @@ from .challenges import (
     EditWeeklyChallenge,
     ManageParticipants,
     ManageSubmissions,
+    ManageWeeklyChallengeLanguages,
     ViewUpcomingWeeklyChallenge,
 )
 
@@ -23,5 +24,6 @@ __all__ = (
     EditWeeklyChallenge,
     ManageParticipants,
     ManageSubmissions,
+    ManageWeeklyChallengeLanguages,
     ViewUpcomingWeeklyChallenge,
 )
