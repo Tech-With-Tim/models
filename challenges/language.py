@@ -13,7 +13,7 @@ class ChallengeLanguage(Model):
 
         :param int id:                  Snowflake ID
         :param str name:                Unique language name
-        :param int download_url:        Optional download url.
+        :param str download_url:        Optional download url.
         :param int disabled:            Whether or not this language is disabled.
         :param str piston_lang:         The language this correlates to in piston API.
         :param str piston_lang_ver:     The version of the specified language e.g. python (3.8.10)
